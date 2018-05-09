@@ -7,5 +7,6 @@ import itertools
 gv = pd.read_excel('generatedvalues.xlsx', 'test', index_col=None, na_values=['NA'])
 
 vars = gv.columns
+varpairs = list(itertools.combinations(vars, 2))
 
-print vars
+# for x_1,x_2 in varpairs:
