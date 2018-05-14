@@ -64,3 +64,5 @@ Additionally, we can use the property that the value of further information is i
  (15p)
 
  (see learnedtree.py)
+
+ Since my original network didn't have many nodes and was already relatively optimized, we wouldn't expect a significantly different entropy. 
