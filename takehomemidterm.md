@@ -20,7 +20,15 @@ Second, the heuristic function should never overestimate the cost. We must use a
 2)	Describe a first-order logic definition that a subgraph of a given graph could be a solution for the Steiner tree problem (i.e., it is the sub-tree connecting all the prespecified nodes, but ignore the minimality of its weight).
  (15p)
 
-$\forall n: IsMulticastNode(n) \rightarrow InSteinerTree(n)$
+ To be a valid solution, for all nodes x and y, either they are nodes in the graph and are connected, or they are not members of the multicast set.
+
+$OneComponent(G) \leftrightarrow \forall x,y: Node(x) \& Node(y) \& Connected(x,y,G) \vee (\neg Member(x) \& \neg Member(y))$
+
+To be connected, there is either an edge between the nodes or a node (nodes) that connect to the two nodes.
+
+$Connected(x,y,G) \leftrightarrow \exists e : Edge(e) \& Node(x) \& Node(y) \& EdgeBetween(x,y) \vee \exists z Connected(z,x) \& Connected(z,y)$
+
+I assume we can tell if a node is in the graph (Node), if the node is a multicast node (Member) and if there exists a direct edge between two nodes (EdgeBetween).
 
 3)	Prove that the value of information is nonnegative (see AIMA: Section 16.6: The value of information).
  (15p)
@@ -50,7 +58,9 @@ $max_a\sum{P(RESULT(a) = s'|a,e,e_j)U(s')} < max_a\sum P(RESULT(a)=s' |a,e)U(s')
 This states that that best action given the additional piece of evidence is less than the best action without the additional piece of evidence, which cannot be true. Thus we have a contradiction.
 
 
-Additionally, we can use the property that the value of further information is irrespective of its ordering. While the probability of information being significantly helpful decreases with the amount of information we have amassed, we know that this increment is never negative. Regardless of the ordering of the information, the added information cannot cause us to make a less-informed decision, even if the information is not particularly helpful or relevant.
+Additionally, we can use the property that the value of further information is irrespective of its ordering. While the probability of information being significantly helpful decreases with the amount of information we have amassed, we know that this increment is never negative. Regardless of the ordering of the information, the added information cannot cause us to make a less-informed decision, even if the information is not particula rly helpful or relevant.
 
 4)	For the Bayesian network in the 2nd major homework and following the data generation described in the 3rd major homework, apply the Steiner tree problem solver for the whole graph with edge weights defined by the pairwise mutual information. The learned tree for all the nodes/variables is a maximum weight spanning tree, where the weights are the mutual information. Give a formula for the entropy of your original network and the entropy of this tree-shaped Bayesian network. Calculate the entropy of this tree-shaped Bayesian network and discuss its relation to the entropy of your original network.
  (15p)
+
+ (see learnedtree.py)

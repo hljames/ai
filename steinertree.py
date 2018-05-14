@@ -26,25 +26,25 @@ class Graph:
                 vSet = set(list(c)  + terminals)
                 # only add edges between nodes included in the subgraph
                 for v1,v2,w in self.Edges:
-                    print "V1: "
-                    print v1
-                    print "V2: "
-                    print v2
-                    print "VSET: "
-                    print vSet
+                    # print "V1: "
+                    # print v1
+                    # print "V2: "
+                    # print v2
+                    # print "VSET: "
+                    # print vSet
                     if (int(v1) in vSet) and (int(v2) in vSet):
                         g.addEdge(v1,v2,w)
                         edgeadded = True
                 if (edgeadded):
-                    print "Graph has edges"
+                    # print "Graph has edges"
                     candidateTree, candidateWeight = g.KruskalMST()
                     if candidateWeight < minWeight:
                         minWeight = candidateWeight
                         minTree = candidateTree
                 edgeadded = False
             k += 1
-        print ("minWeight: " + str(minWeight))
-        print ("minTree:")
+        # print ("minWeight: " + str(minWeight))
+        # print ("minTree:")
         for u,v,weight in minTree:
             print (str(u) + " -- " + str(v) + " == " + str(weight))
         return minTree
